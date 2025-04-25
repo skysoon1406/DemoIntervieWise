@@ -1,0 +1,66 @@
+{%  extends "layouts/default.html" %}
+
+{% block 'main' %}
+
+<h1>面試列表
+</h1>
+
+<a href="/interviews/new/">
+  <button class="btn btn-neutral">HardCore新增面試</button>  
+</a>
+
+<br><br>
+
+<a href="{% url 'interviews:new' %}">
+  <button class="btn btn-neutral">新增面試</button>  
+
+</a>
+
+
+<br><br><br><br>
+
+{% comment %} {{ interviews }} {% endcomment %}
+
+<br><br><br><br>
+
+{% comment %} 
+<ul>
+    {%  for interview in interviews %}
+        <li>
+                                                                <!-- <a href="/interviews/{{interview.id}}"> --> 
+            <a href="{% url 'interviews:show' interview.id %}">  <!--  這種寫法比較建議 --> 
+                <section>
+                    <h2>{{ interview.company_name}}</h2>
+                    <h3>{{ interview.position}}</h3>
+                    <h5>{{  interview.rating}}  /  10</h5>
+                </section>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+ {% endcomment %}
+
+<ul class="list bg-base-100 rounded-box shadow-md ">
+  
+    <li class="p-4 pb-2 text-xl opacity-80 tracking-wide bg-blue-100">Interview List</li>
+    {%  for interview in interviews %}
+    <li class="list-row">
+      <div></div>
+      <a href="{% url 'interviews:show' interview.id %}">
+        <div>
+          <div>公司：{{ interview.company_name}}</div>
+          <div class="text-xs uppercase font-semibold opacity-60">職稱：{{ interview.position}}</div>
+        </div>
+      </a>
+
+      <button class="btn btn-square btn-ghost">
+        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
+      </button>
+    </li>
+    {% endfor %}
+    
+
+    
+  </ul>
+
+{% endblock  %}

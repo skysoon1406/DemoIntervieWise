@@ -1,0 +1,29 @@
+
+
+{%  extends "layouts/default.html" %}
+
+{% block 'main' %}
+<h1>登入</h1>
+<h1>登入帳號</h1>
+<form action="{% url 'users:login' %}" method="POST">
+    {% csrf_token %}
+
+    <input type="hidden" name="next" value="{{ next }}">
+
+    <div>
+        <div>
+            <label for="username">帳號：</label>
+            <input type="text" name="username">
+        </div>
+
+        <div>
+            <label for="password">密碼：</label>
+            <input type="password" name="password">
+        </div>
+    </div>
+
+
+    <button class="btn btn-neutral">登入</button>
+</form>
+
+{% endblock  %}

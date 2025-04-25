@@ -1,0 +1,67 @@
+{%  extends "layouts/default.html" %}
+
+{% block 'main' %}
+
+<legend class="fieldset-legend">
+<h1>編輯:  {{ interview.company_name}}</h1>
+</legend>
+<form action="{% url 'interviews:show' interview.id %}" method="post" class="m-3">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div>
+            <label class="label"> 
+                {{ field.label_tag }}
+            </label>
+            {{ field }}
+            {{ field.help_text}}
+        </div>
+    {% endfor %}
+
+
+
+    {% comment %} action = 路徑   //   method =  get / post {% endcomment %}
+
+    {% comment %} <input type="hidden" value="{{  csrf_token }}" /> {% endcomment %}
+
+    
+{% comment %}       舊版本
+    <div>
+        <label for="company_name"> 公司名稱</label>
+        <input name="company_name" value="{{ interview.company_name}}" type="text" id="company_name">
+    </div>
+    
+    <div>
+        <label for="position"> 職稱</label>
+        <input name="position" value="{{ interview.position}}" type="text" id="position">
+    </div>
+
+    <div>
+        <label for="interview_date"> 面試日期</label>
+        <input name="interview_date" value="{{ interview.interview_date|date:'Y-m-d' }}" type="date" id="interview_date">
+    </div>
+
+    <div>
+        <label for="review"> 心得</label>
+        <textarea name="review" id="review">{{ interview.review}} </textarea>
+    </div>
+
+    <div>
+        <label for="result"> 面試結果</label>
+        <input name="result" value="{{ interview.result }}" type="text" id="result">
+    </div>
+
+    <div>
+        <label for="rating"> 評分</label>
+        <input name="rating" value="{{ interview.rating}}" type="number" id="rating">
+    </div> {% endcomment %}
+
+    <input type="submit" value="確認編輯" class="btn btn-neutral">
+
+    
+</form>
+<div class="m-2">
+    <a href="{% url 'interviews:show' interview.id %}" class="btn btn-neutral">放棄編輯</a>
+    <a href="{% url 'interviews:index' %}" class="btn btn-neutral">放棄編輯，回到列表</a>    
+</div>
+{% endblock  %}

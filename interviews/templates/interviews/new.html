@@ -1,0 +1,66 @@
+{%  extends "layouts/default.html" %}
+
+{% block 'main' %}
+
+<legend class="fieldset-legend ">
+<h1 class="text-5xl">新增面試</h1>
+</legend>
+
+<a href="{% url 'interviews:index' %}" class="btn"> 回面試列表 </a>
+
+<form action=" {% url 'interviews:index' %} " method="post" class="m-3">  {% comment %}  # action 丟到哪裡 ， 對應的 views 就要有def 來接{% endcomment %}
+    {% csrf_token %}
+
+    <div>
+        {% comment %} action = 路徑   //   method =  get / post {% endcomment %}
+
+        {% comment %} <input type="hidden" value="{{  csrf_token }}" /> {% endcomment %}
+    </div>
+
+
+    {% for field in form %}
+    <div>
+        <label class="label"> 
+            {{ field.label_tag }}
+        </label>
+        {{ field }}
+        {{ field.help_text}}
+    </div>
+    {% endfor %}
+
+
+
+    {% comment %} <div>
+        <label for="company_name"> 公司名稱</label>
+        <input name="company_name" type="text" id="company_name">
+    </div>
+    
+    <div>
+        <label for="position"> 職稱</label>
+        <input name="position" type="text" id="position">
+    </div>
+
+    <div>
+        <label for="interview_date"> 面試日期</label>
+        <input name="interview_date" type="date" id="interview_date">
+    </div>
+
+    <div>
+        <label for="review"> 心得</label>
+        <textarea name="review" id="review"> </textarea>
+    </div>
+
+    <div>
+        <label for="result"> 面試結果</label>
+        <input name="result" type="text" id="result">
+    </div>
+
+    <div>
+        <label for="rating"> 評分</label>
+        <input name="rating" type="number" id="rating">
+    </div> {% endcomment %}
+
+    <input type="submit" value="新增" class="btn btn-neutral">
+</form>
+
+{% endblock  %}
