@@ -158,4 +158,11 @@ def favorite(request,id):
     else:
         favorite.add(interview)
 
-    return redirect('interviews:show',interview.id)
+    return render(request,
+                  'interviews/favorite.html',
+                  {
+                    'user': request.user , 
+                   'interview':interview
+                   },
+                   )
+    # return redirect('interviews:show',interview.id)
