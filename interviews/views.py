@@ -3,7 +3,7 @@ from .models import Interview ,Comment,FavoriteInterview
 from .form import InterviewForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
