@@ -9,7 +9,7 @@
 <section>
     <form action="{% url 'interviews:favorite' interview.id %}" method="POST">
         {% csrf_token %}
-        <button class="btn btn-neutral btn-square btn-ghost flex items-center gap-2">
+        <button class="btn  btn-square btn-ghost flex items-center gap-2">
             <span>按讚</span>
             {% comment %} <svg class="size-[1.5em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">

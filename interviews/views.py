@@ -150,12 +150,12 @@ def comment(request,id):
 @login_required
 def favorite(request,id):
     interview = get_object_or_404(Interview,pk=id)
-    user = request.user
+    favorite = request.user.favorited_interviews
     
 
-    if user.favorited_interviews.filter(pk=interview.pk).exists():
-        user.favorited_interviews.remove(interview)
+    if favorite.filter(pk=interview.pk).exists():
+        favorite.remove(interview)
     else:
-        user.favorited_interviews.add(interview)
+        favorite.add(interview)
 
     return redirect('interviews:show',interview.id)
