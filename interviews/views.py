@@ -87,7 +87,7 @@ def show(request,id):
         # interview = Interview.objects.get(pk=id)  #  pk =  primary key 主鍵  # 這個沒有引號的interview 可以改名字 interview_info 什麼都可以
         # interview = get_object_or_404(Interview,pk=id) 這樣也可以  ，可以直接搬到外面
         #comments = Comment.objects.filter(interview=interview)  #(interview_id=id)也可以
-        comments = interview.comment_set.all()
+        comments = interview.comment_set.order_by("-id")
         return render(
             request,
             "interviews/show.html",

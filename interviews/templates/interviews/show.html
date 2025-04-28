@@ -26,10 +26,13 @@
 <hr />
 <h2>留言：</h2>
 
-<ul>
+<ul class="card-body">
     {% for comment in comments  %}
-    <li>
-        {{ comment.content }}
+    <li class="card-title">
+        <div>
+            <h5> {{ comment.user }}    : {{ comment.content }}   </h5>
+            <p> 留言時間：  {{ comment.created_at }}   </p>  
+        </div>
     </li>
     {% endfor %}
 
