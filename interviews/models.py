@@ -10,7 +10,8 @@ class Interview(models.Model):   # 新增一個類別 Interview  ， 繼承了 m
     rating = models.PositiveSmallIntegerField(default=5)
     result = models.CharField(max_length=50,null=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-
+    favorited_by = models.ManyToManyField(User,through="FavoriteInterview",related_name="favorited_interviews")
+    #                                                   # FavoriteInterview  這個時候還沒出現，會出錯，所以要用字串方式呈現
 
 class Comment(models.Model):
     content = models.TextField()
@@ -23,3 +24,9 @@ class Comment(models.Model):
 #     interview_date
 #     review
 #     rating
+
+
+# Join Table 
+class FavoriteInterview(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    interview = models.ForeignKey(Interview,on_delete=models.CASCADE)

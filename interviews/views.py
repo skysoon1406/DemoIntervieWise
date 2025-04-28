@@ -1,5 +1,5 @@
 from django.shortcuts import render , HttpResponse , redirect , get_object_or_404
-from .models import Interview ,Comment
+from .models import Interview ,Comment,FavoriteInterview
 from .form import InterviewForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -131,3 +131,31 @@ def comment(request,id):
     return redirect('interviews:show',interview.id)
 
 
+# @require_POST
+# @login_required
+# def favorite(request,id):
+#     interview = get_object_or_404(Interview,pk=id)
+#     user = request.user
+#     f = FavoriteInterview.objects.filter(user=user,interview=interview)
+
+#     if f:
+#         f.delete()
+#     else:
+            
+#         FavoriteInterview.objects.create(user=user,interview=interview)
+
+#     return redirect('interviews:show',interview.id)
+
+@require_POST
+@login_required
+def favorite(request,id):
+    interview = get_object_or_404(Interview,pk=id)
+    user = request.user
+    
+
+    if user.favorited_interviews.filter(pk=interview.pk).exists():
+        user.favorited_interviews.remove(interview)
+    else:
+        user.favorited_interviews.add(interview)
+
+    return redirect('interviews:show',interview.id)
