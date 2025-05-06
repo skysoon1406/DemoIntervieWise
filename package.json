@@ -5,15 +5,20 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    ""
+    "buildjs": "esbuild ./src/app.js --bundle --outfile=./static/assets/scripts/app.js",
+    "dev": "esbuild ./src/app.js --bundle --outfile=./static/assets/scripts/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "esbuild": "0.25.2",
+    "esbuild": "^0.25.2",
     "tailwindcss": "^4.1.4",
     "vite": "^6.3.2"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.9",
+    "htmx.org": "^2.0.4"
   }
 }
