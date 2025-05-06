@@ -7,7 +7,8 @@
     <title>IntervieWise</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-     {% comment %} <script src="https://unpkg.com/htmx.org@2.0.4"></script> {% endcomment %}
+    {% comment %} 以下這段就不用了 ，因爲已經寫在 src/app.js 然後被打包在 static/assets/scripts/app.js 裏面了 {% endcomment %}
+    {% comment %} <script src="https://unpkg.com/htmx.org@2.0.4"></script> {% endcomment %}
     {% comment %} <script src="//unpkg.com/alpinejs" defer></script>  {% endcomment %}
     <script src="{% static "assets/scripts/app.js" %}"></script>
 </head>
