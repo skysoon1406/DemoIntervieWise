@@ -6901,8 +6901,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   var src_default = alpine_default;
   var module_default = src_default;
 
-  // src/app.js
+  // src/scripts/app.js
   window.Alpine = module_default;
   module_default.start();
-  console.log("123");
+  console.log("1234");
 })();

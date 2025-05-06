@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildjs": "esbuild ./src/scripts/app.js --bundle --outfile=./static/assets/scripts/app.js",
-    "dev": "esbuild ./src//scripts/app.js --bundle --outfile=./static/assets/scripts/app.js",
+    "dev": "esbuild ./src//scripts/app.js --bundle --outfile=./static/assets/scripts/app.js --watch ",
     "css": "npx @tailwindcss/cli -i ./src/style/style.css -o ./static/assets/style/output.css --watch",
+    "watch":"concurrently \"esbuild ./src//scripts/app.js --bundle --outfile=./static/assets/scripts/app.js --watch\" \"npx @tailwindcss/cli -i ./src/style/style.css -o ./static/assets/style/output.css --watch\"",
     "build": "esbuild ./src/scripts/app.js --bundle --outfile=./static/assets/scripts/app.js && npx @tailwindcss/cli -i ./src/style/style.css -o ./static/assets/style/output.css  "
-
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
   "description": "",
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.5",
+    "concurrently": "^9.1.2",
     "daisyui": "^5.0.35",
     "esbuild": "^0.25.2",
     "tailwindcss": "^4.1.5",

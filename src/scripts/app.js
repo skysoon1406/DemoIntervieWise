@@ -4,4 +4,4 @@ import Alpine from 'alpinejs'
 window.Alpine = Alpine
  
 Alpine.start()
-console.log("123")
+console.log("1234")
