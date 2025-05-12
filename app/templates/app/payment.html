@@ -4,7 +4,7 @@
 <script src="https://js.braintreegateway.com/web/dropin/1.44.1/js/dropin.min.js"></script>
 
 <h1> 付款頁面</h1>
-<form id="payment-form" method="post" action="">
+<form id="payment-form" method="post" action="{% url 'app:create_purchase' %}">
   {% csrf_token %}
   <div id="dropin-container"></div>
   <input type="hidden" name="nonce" id="nonce">
@@ -15,17 +15,23 @@
 
 
 
-  <script type="text/javascript">
+ <script type="text/javascript">
     // call 'braintree.dropin.create' code here
 
   braintree.dropin.create({
     authorization: "{{ client_token }}",
     container: '#dropin-container'
   }).then((dropinInstance) => {
-    console.log("Drop-in UI ready:", dropinInstance);
-  }).catch((error) => {
-    console.error("Braintree Drop-in error:", error);
-  });
+    const form = document.querySelector("#payment-form")
+      form.addEventListener("submit", (e) => {
+        e.preventDefault()
+
+        dropinInstance.requestPaymentMethod().then(({ nonce }) => {
+          document.querySelector("#nonce").value = nonce
+          form.submit()
+        })
+      })
+    });
   </script>
 
 {% endblock  %}
