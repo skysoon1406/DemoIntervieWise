@@ -1,0 +1,32 @@
+{%  extends "layouts/default.html" %}
+{% load static %}
+{% block 'main' %}
+<script src="https://js.braintreegateway.com/web/dropin/1.44.1/js/dropin.min.js"></script>
+
+<h1> 付款頁面</h1>
+<form id="payment-form" method="post" action="">
+  {% csrf_token %}
+  <div id="dropin-container"></div>
+  <input type="hidden" name="nonce" id="nonce">
+  <button type="submit">確認付款</button>
+</form>
+
+  <div id="dropin-container"></div>
+
+
+
+  <script type="text/javascript">
+    // call 'braintree.dropin.create' code here
+
+  braintree.dropin.create({
+    authorization: "{{ client_token }}",
+    container: '#dropin-container'
+  }).then((dropinInstance) => {
+    console.log("Drop-in UI ready:", dropinInstance);
+  }).catch((error) => {
+    console.error("Braintree Drop-in error:", error);
+  });
+  </script>
+
+{% endblock  %}
+

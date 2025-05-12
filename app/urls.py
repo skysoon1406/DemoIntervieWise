@@ -22,6 +22,6 @@ app_name = "pages"
 
 urlpatterns = [
     path('',views.home,name="home"),
-    path('about/',views.about,name="about")
-
+    path('about/',views.about,name="about"),
+    path('payment/',views.payment,name="payment"),
 ]
